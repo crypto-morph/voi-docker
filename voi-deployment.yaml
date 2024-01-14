@@ -1,0 +1,34 @@
+---
+version: "2.0"
+services:
+  app:
+    image: morph42/voi-docker:2024-01-14-2
+    expose:
+      - port: 22
+        as: 22
+        accept:
+          - {{ your ssh client IP }}
+        proto: tcp
+        to:
+          - global: true
+profiles:
+  compute:
+    app:
+      resources:
+        cpu:
+          units: 8
+        memory:
+          size: 4GB
+        storage:
+          - size: 40Gi
+  placement:
+    akash:
+      pricing:
+        app:
+          denom: uakt
+          amount: 10000
+deployment:
+  app:
+    akash:
+      profile: app
+      count: 1
