@@ -2,7 +2,7 @@
 version: "2.0"
 services:
   app:
-    image: morph42/voi-docker:2024-01-14-2
+    image: morph42/voi-docker:2024-01-27
     expose:
       - port: 22
         as: 22
@@ -11,16 +11,26 @@ services:
         proto: tcp
         to:
           - global: true
+    params:
+      storage:
+        algorand:
+          mount: /var/lib/algorand
+          readOnly: false
 profiles:
   compute:
     app:
       resources:
         cpu:
-          units: 8
+          units: 4
         memory:
-          size: 4GB
+          size: 8GB
         storage:
-          - size: 40Gi
+          - size: 1Gi
+          - name: algorand
+            size: 10Gi
+            attributes:
+              persistent: true
+              class: beta2
   placement:
     akash:
       pricing:

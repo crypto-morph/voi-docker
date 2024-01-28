@@ -34,9 +34,10 @@ The repo also contains:
   `passwd` (to set a password)
   `supervisorctl start sshd` (to start SSH)
    you should be able to get to it _just_ from the the IP you set in step 2)
-5) The Algod Daemon starts syncing - you can run `goal node status` to watch it - but you can speed it up by running `catchup.sh`. This will fire off the CatchupPoint instructions detailed in D13's guide and it will "follow" the catchup on the terminal - you can Ctrl-C to exit early if you wish.   
+5) IF... you have created a server with a persistent volume - it will have overridden the standard `/var/lib/algorand` directory with a blank one - restore it with `/voi/setup-algod.sh` and `supervisorctl start algod`
+6) The Algod Daemon starts syncing - you can run `goal node status` to watch it - but you can speed it up by running `catchup.sh`. This will fire off the CatchupPoint instructions detailed in D13's guide and it will "follow" the catchup on the terminal - you can Ctrl-C to exit early if you wish.   
   The process will be complete when "Sync Time: 0.0" to show it's synced.
-6) `setup-telemetry.sh {my name}` will setup telemetry. (e.g. ./setup-telemetry.sh morph-akash) 
+7) `setup-telemetry.sh {my name}` will setup telemetry. (e.g. ./setup-telemetry.sh morph-akash) 
 
 
 You can now follow the rest of D13's guide to get your keys setup and participation started https://d13.co/posts/set-up-voi-participation-node/#participation. 
